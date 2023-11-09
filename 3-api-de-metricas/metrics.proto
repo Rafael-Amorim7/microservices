@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package metrics;
+
+message MetricsRequest {
+  double latitude = 1;
+  double longitude = 2;
+  string brand = 3;
+  string date = 4;
+  string device_id = 5;
+}
+
+message MetricsResponse {
+  string message = 1;
+}
+
+service MetricsService {
+  rpc SendMetrics (MetricsRequest) returns (MetricsResponse) {}
+
+  rpc SendMetricsStreamReply (MetricsRequest) returns (stream MetricsResponse) {}
+}

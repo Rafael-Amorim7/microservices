@@ -1,0 +1,25 @@
+type Dispositivo {
+  id_dispositivo: Int
+  marca: String
+  quantidade_posicao: Int
+  total_km: Float
+}
+
+type Marca {
+  marca: String
+  quantidade_dispositivo: Int
+  quantidade_posicao: Int
+  total_km: Float
+}
+
+type Query {
+  consultaDispositivo(id_dispositivo: Int, dia: String): Dispositivo
+  consultaMarca(marca: String, dia: String): Marca
+  consultaGeral(dia: String): Geral
+}
+
+type Geral {
+  quantidade_dispositivo: Int
+  quantidade_posicao: Int
+  total_km: Float
+}
