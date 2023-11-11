@@ -31,53 +31,56 @@ class MyGraphqlService implements ConsumeGraphqlInterface
         return $resposta->getStatusCode() == 200;
     }
 
-    public function consultaDispositivo()
+    public function consultaDispositivo(string $device_id, string $dia)
     {
-        $data = [
-            'input' => [
-                'dispositivo_id' => 'AJ192LAJK',
-                'dia' => ' 2023-08-01',
-            ]
-        ];
+        $query = '{
+            consultaDispositivo(id_dispositivo: "'.$device_id.'", dia: "'.$dia.'") {
+                id_dispositivo
+                marca
+                quantidade_posicao
+                total_km
+            }
+        }';
 
         $response = $this->client->post($this->url, [
-            'body' => "mutation { consultaDispositivo(" . json_encode($data) . ") { message result status } } "
+            'body' => json_encode(['query' => $query])
         ]);
 
-        return json_decode($response->getBody()->getContents());
-
+        return json_decode($response->getBody()->getContents(), true);
     }
 
-    public function consultaMarca()
+    public function consultaMarca(string $marca,string $dia)
     {
-        $data = [
-            'input' => [
-                'marca' => 'Apple',
-                'dia' => '2023-08-01',
-            ]
-        ];
+        $query = '{
+            consultaMarca(marca: "'.$marca.'", dia: "'.$dia.'") {
+                quantidade_dispositivo
+                marca
+                quantidade_posicao
+                total_km
+            }
+        }';
 
         $response = $this->client->post($this->url, [
-            'body' => "mutation { consultaMarca(" . json_encode($data) . ") { message result status } } "
+            'body' => json_encode(['query' => $query])
         ]);
 
-        return json_decode($response->getBody()->getContents());
-
+        return json_decode($response->getBody()->getContents(), true);
     }
 
-    public function consultaGeral()
+    public function consultaGeral(string $dia)
     {
-        $data = [
-            'input' => [
-                'dia' => '2023-08-01',
-            ]
-        ];
+        $query = '{
+            consultaGeral(dia: "'.$dia.'") {
+                quantidade_dispositivo
+                quantidade_posicao
+                total_km
+            }
+        }';
 
         $response = $this->client->post($this->url, [
-            'body' => "mutation { consultaGeral(" . json_encode($data) . ") { message result status } } "
+            'body' => json_encode(['query' => $query])
         ]);
 
-        return json_decode($response->getBody()->getContents());
-
+        return json_decode($response->getBody()->getContents(), true);
     }
 }

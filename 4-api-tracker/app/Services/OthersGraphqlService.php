@@ -13,19 +13,19 @@ class OthersGraphqlService implements ConsumeGraphqlInterface
         return false;
     }
 
-    public function consultaDispositivo()
+    public function consultaDispositivo(string $device_id, string $dia)
     {
         // Implementar consumo de outra api
         dd('other graphql');
     }
 
-    public function consultaMarca()
+    public function consultaMarca(string $marca, string $dia)
     {
         // Implementar consumo de outra api
         dd('other graphql');
     }
 
-    public function consultaGeral()
+    public function consultaGeral(string $dia)
     {
         // Implementar consumo de outra api
         dd('other graphql');

@@ -18,9 +18,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $interface = ConsumeGraphqlInterface::class;
 
-        if (OthersGraphqlService::isUP())
+        if (OthersGraphqlService::isUP()){
             $implement = OthersGraphqlService::class;
-        $implement = MyGraphqlService::class;
+        }
+        else if (MyGraphqlService::isUP()){
+            $implement = MyGraphqlService::class;
+        }
 
 
         $this->app->bind(
