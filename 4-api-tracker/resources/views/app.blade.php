@@ -46,7 +46,7 @@
             let markerl
 
             function initMap() {
-                const uluru = { lat: 53.6295136, lng: 10.0467418 };
+                const uluru = { lat: -22.2324485, lng: -49.9684307 };
                 map = new google.maps.Map(document.getElementById("map"), {
                     zoom: 18,
                     center: uluru,
@@ -80,12 +80,12 @@
                         updatePosition(e.lat, e.lng); // Importante estes nomes serem iguais no backend
                     });
             }
-            //Echo.channel('not_found')
-            //    .listen('WebsocketEvent', (e) => {
-            //        console.log(e);
-            //        const error_div = document.getElementById("erro");
-            //        error_div.value = 'Elemento nao encontrado';
-            //    });
+            Echo.channel('not_found')
+                .listen('WebsocketEvent', (e) => {
+                    console.log(e);
+                    const error_div = document.getElementById("erro");
+                    error_div.value = 'Elemento nao encontrado';
+                });
         </script>
     </body>
 </html>
