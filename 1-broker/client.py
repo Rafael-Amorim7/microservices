@@ -3,7 +3,6 @@ import json, random
 from time import sleep
  
 client = mqtt.Client(protocol = mqtt.MQTTv31)
-client.connect("127.0.0.1", 1883)
  
 # Univem
 devices = [
@@ -17,6 +16,7 @@ longitude = -49.965099637772916
 device_id = devices[random.randint(0, len(devices))]
 
 while True:
+    client.connect("127.0.0.1", 1883)
     
     locationData = {
         "device_id": device_id,
@@ -28,8 +28,8 @@ while True:
     client.publish(topic, json.dumps(locationData), qos=1)
     print(topic + " => " + json.dumps(locationData))
 
-    increment_distancia = random.uniform(-0.95, 0.05)
+    increment_distancia = random.uniform(-0.0005151, -0.0005351)
     latitude += increment_distancia
     longitude += increment_distancia
 
-    sleep(3)
+    sleep(1)
