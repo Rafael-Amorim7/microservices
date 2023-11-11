@@ -26,16 +26,11 @@ class CleanRedis extends Command
      */
     public function handle()
     {
-        $currentDate = now();
+        $keys = Redis::keys("*");
 
-        $cachedDate = Redis::get('redis_cache_date');
-
-        if ($cachedDate !== $currentDate->toDateString()) {
-            Redis::del('devices');
-            Redis::set('redis_cache_date', $currentDate->toDateString());
-            $this->info('Cache Redis limpo com sucesso.');
-        } else {
-            $this->info('Cache Redis já limpo para hoje.');
+        foreach ($keys as $key) {
+            $redis = Redis::del($key);
+            $this->info('Cache Redis status: ' . $redis);
         }
     }
 }

@@ -47,8 +47,8 @@ class ProcessarMensagemRabbitMQ implements ShouldQueue
             ]);
 
             $now = date('Y-m-d');
-            //$output = shell_exec("python app/Utils/metrics/client.py $latitude $longitude $device->marca $now $data->device_id");
-            //Log::info("Client metrics python: ". $output);
+            $output = shell_exec("python app/Utils/metrics/client.py $latitude $longitude $device->marca $now $data->device_id");
+            Log::info("Client metrics python: ". $output);
             return;
         }
         Log::info("Device not found: {$data->device_id} - ({$data->latitude}, {$data->longitude})");
