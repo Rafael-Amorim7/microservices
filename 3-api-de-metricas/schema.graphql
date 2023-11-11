@@ -1,5 +1,5 @@
 type Dispositivo {
-  id_dispositivo: Int
+  id_dispositivo: String
   marca: String
   quantidade_posicao: Int
   total_km: Float
@@ -13,7 +13,7 @@ type Marca {
 }
 
 type Query {
-  consultaDispositivo(id_dispositivo: Int, dia: String): Dispositivo
+  consultaDispositivo(id_dispositivo: String, dia: String): Dispositivo
   consultaMarca(marca: String, dia: String): Marca
   consultaGeral(dia: String): Geral
 }

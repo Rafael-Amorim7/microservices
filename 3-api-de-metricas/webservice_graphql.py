@@ -90,8 +90,8 @@ def consultarGeral(_, info, dia):
 
 def dbConnection(query, param):
     try:
-        connection = mysql.connector.connect(user='root',
-                                                password='pass741852963', 
+        connection = mysql.connector.connect(user='sherlock',
+                                                password='', 
                                                 host='127.0.0.1', 
                                                 database='rastreio')
         cursor = connection.cursor(buffered=True)
