@@ -73,7 +73,7 @@ class DeviceController extends Controller
                 return $query->whereDate('created_at', $filters['day']);
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->paginate(10);
 
         return response()->json(['device' => $device, 'locations' => $locations]);
     }

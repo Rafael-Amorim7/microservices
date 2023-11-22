@@ -29,11 +29,14 @@ class CleanMysql extends Command
     {
         $fiveDaysAgo = Carbon::now()->subDays(5);
 
-        DB::table('locations')
+        $success = DB::table('locations')
             ->where('created_at', '<=', $fiveDaysAgo)
             ->delete();
 
-        $this->info('Registros de localizações dos últimos 5 dias excluídos com sucesso.');
-
+        if ($success) {
+            $this->info('Registros de localizações dos últimos 5 dias excluídos com sucesso.');
+            return;
+        }
+        $this->info('Erro ao deletar localizações dos últimos 5 dias');
     }
 }

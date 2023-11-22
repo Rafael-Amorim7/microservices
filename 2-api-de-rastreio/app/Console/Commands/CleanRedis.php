@@ -26,11 +26,14 @@ class CleanRedis extends Command
      */
     public function handle()
     {
-        $keys = Redis::keys("*");
+        $prefix = 'laravel_database_';
+        $devices_cached = Redis::keys("*");
 
-        foreach ($keys as $key) {
-            $redis = Redis::del($key);
+        foreach ($devices_cached as $device) {
+            $device = str_replace($prefix, '', $device); // remove o prefixo
+            $redis = Redis::del($device);
             $this->info('Cache Redis status: ' . $redis);
         }
+
     }
 }
