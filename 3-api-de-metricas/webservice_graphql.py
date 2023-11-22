@@ -24,7 +24,7 @@ def consultarDispositivo(_, info, id_dispositivo, dia):
             
             return{
                 "id_dispositivo": device_id,
-                "brand": brand,
+                "marca": brand,
                 "quantidade_posicao": position_count,
                 "total_km": total_distance
             }
