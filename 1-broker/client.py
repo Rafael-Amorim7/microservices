@@ -10,11 +10,12 @@ devices = [
     "A1235",
     "A1236",
     "A1237",
+    "A1239",
 ]
 latitude = -22.233361104467544
 longitude = -49.965099637772916
 device_id = devices[random.randint(0, len(devices))]
-
+    
 while True:
     client.connect("127.0.0.1", 1883)
     
