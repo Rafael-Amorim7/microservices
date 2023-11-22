@@ -15,24 +15,21 @@ class ConsumeGraphqlController extends Controller
         $this->service = $service;
     }
 
-    public function consultaDispositivo()
+    public function consultaDispositivo(Request $request)
     {
-        $consulta = $this->service->consultaDispositivo();
-        // TODO: validar
+        $consulta = $this->service->consultaDispositivo($request->device_id, $request->dia);
         return $consulta;
     }
 
-    public function consultaMarca()
+    public function consultaMarca(Request $request)
     {
-        $consulta = $this->service->consultaMarca();
-        // TODO: validar
+        $consulta = $this->service->consultaMarca($request->marca, $request->dia);
         return $consulta;
     }
 
-    public function consultaGeral()
+    public function consultaGeral(Request $request)
     {
-        $consulta = $this->service->consultaGeral();
-        // TODO: validar
+        $consulta = $this->service->consultaGeral($request->dia);
         return $consulta;
     }
 }

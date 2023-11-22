@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use App\Http\Services\ConsumeGraphqlInterface;
+use Exception;
 use App\Services\MyGraphqlService;
 use App\Services\OthersGraphqlService;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Services\ConsumeGraphqlInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
      * Register any application services.
      *
      * @return void
+     * @throws Exception
      */
     public function register()
     {
@@ -23,13 +25,14 @@ class AppServiceProvider extends ServiceProvider
         }
         else if (MyGraphqlService::isUP()){
             $implement = MyGraphqlService::class;
+        } else {
+            throw new Exception('GraphQL service is down :(');
         }
-
-
         $this->app->bind(
             $interface,
             $implement
         );
+
     }
 
     /**
